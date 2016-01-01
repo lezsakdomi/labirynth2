@@ -1,0 +1,51 @@
+<body onLoad="init(false);" onKeyDown="keyPressTriggers[event.keyCode]=setInterval(keyPress(event.keyCode), 100);" onKeyUp="clearInterval(keyPressTriggers[event.keyCode])">
+  <!--script src=https://rawgit.com/tiff/887032/raw/654ee2e6d3c93328a79afe9eb797167237238efd/compareColors.js></script> <!---->
+  <script src=main.js></script>
+  <link rel=stylesheet href=main.css>
+	<div>
+		<div>
+			<canvas id=canvas></canvas>
+		</div>
+		<div>
+			<input type=number placeholder=Width onChange="canvas.width=this.value; init(true);" class="sizeinput">
+			<br>
+			<input type=number placeholder=Height onChange="canvas.height=this.value; init(true);" class="sizeinput">
+			<br>
+			<button onClick="beginDraw(); endDraw();">Clear!</button>
+		</div>
+		<br>
+		<div>
+			<input type=number id=relx onChange="reDraw(false)" placeholder=relx autofocus>
+			<input type=number id=rely onChange="reDraw(false)" placeholder=rely autofocus>
+			<input id=relcolor size=5 disabled placeholder="Color on minimap">
+			<br>
+			<button onclick="setTimeout(function(){reDraw();}, 0);">ReDraw!</button>
+			<input placeholder=Time disabled id=time size=4>
+			<input placeholder=FPS disabled id=fps size=4>
+			<br>
+			<button id=runb onClick="run=setInterval(function(){reDraw()}, delay.value); runb.disabled=true; stopb.disabled=false;">Run</button>
+			<button id=stopb onclick="clearInterval(run); stopb.disabled=true; runb.disabled=false;" disabled>Stop</button>
+			<input type=number id=delay placeholder="Delay (ms)">
+		</div>
+		<div>
+			
+		</div>
+	</div>
+	<br>
+	<div>
+		<div>
+			<button onClick="mctx.fillRect(0, 0, minimap.width, minimap.height);">Clear!</button>
+			<input type=text placeholder=Color onChange="mctx.strokeStyle=this.value" size=4>
+			<input type=number placeholder=Width onChange="mctx.lineWidth=this.value">
+		</div>
+		<br>
+		<div style="background: gray;">
+			<canvas id=minimap width=90 height=90 onMouseDown="doPaint=true; mctx.beginPath(); mctx.moveTo(event.offsetX, event.offsetY);" onMouseUp="doPaint=false; mctx.stroke();" onMouseMove="if (doPaint) {mctx.lineTo(event.offsetX, event.offsetY); mctx.stroke();}"></canvas><canvas id=moverlay width=90 height=90  onMouseDown="doPaint=true; mctx.beginPath(); mctx.moveTo(event.offsetX, event.offsetY);" onMouseUp="doPaint=false; mctx.stroke();" onMouseMove="if (doPaint) {mctx.lineTo(event.offsetX, event.offsetY); mctx.stroke();}"></canvas>
+		</div>
+		<div>
+			<input type=number placeholder=Width onChange="minimap.width=this.value; init(true);" class="sizeinput">
+			<br>
+			<input type=number placeholder=Height onChange="minimap.height=this.value; init(true);" class="sizeinput">
+		</div>
+	</div>
+</body>

@@ -1,0 +1,29 @@
+#relx,
+#rely {
+  width: 40px;
+}
+
+#delay {
+  width: 80px;
+}
+
+body {
+  background: inherit;
+}
+
+div {
+  display: inline-block;
+  vertical-align: top;
+	box-shadow: 5px 5px 15px gray;
+	margin: 5px;
+	padding: 5px;
+}
+
+.sizeinput{
+	width: 100px;
+}
+
+#moverlay{
+	position: relative;
+	left: -90px;
+}
