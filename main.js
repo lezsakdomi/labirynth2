@@ -185,22 +185,9 @@ function getRelColor(rel){
 	return getRel12Color(rel);
 }
 
-function getRel1Color(rel) {
-	if (logDrawing) console.log(rel);
-	rel2=rel;
-	rel2.x+=Number(relx.value);
-	rel2.y+=Number(rely.value);
-	return getRel2Color(rel2);
-	//if (logDrawing) console.log(rel);
-}
-
-function getRel2Color(rel){
-  var imageData = mctx.getImageData(rel.x + minimap.width / 2, minimap.height - rel.y, 1, 1);
-  return rgbToHex(imageData.data[0], imageData.data[1], imageData.data[2]);
-}
-
 function getRel12Color(rel){
-	rel2={x: rel.x, y: rel.y};
+	var rel2={x: rel.x, y: rel.y};
+	turn(rel2, -Number(angle.value));
 	rel2.x+=Number(relx.value);
 	rel2.y+=Number(rely.value);
 	
@@ -209,6 +196,12 @@ function getRel12Color(rel){
 	
   var imageData = mctx.getImageData(rel2.x + minimap.width / 2, minimap.height - rel2.y, 1, 1);
   return rgbToHex(imageData.data[0], imageData.data[1], imageData.data[2]);
+}
+
+function turn(rel, angle){
+	var rel2={x: rel.x, y: rel.y};
+	rel.x=Math.cos(Math.PI/2+angle)*rel2.y+Math.cos(angle)*rel2.x;
+	rel.y=Math.sin(Math.PI/2+angle)*rel2.y+Math.sin(angle)*rel2.x;
 }
 
 
@@ -414,6 +407,16 @@ function keyPress(keyCode){
 		case 40: // \|/
 		case 83: //  S
 			rely.value--;
+			break;
+		
+		case 226: //  Í
+		case 33: // PgUp
+			angle.value=Number(angle.value)-0.03;
+			break;
+		
+		case 67: //  C
+		case 34: //PgDn
+			angle.value=Number(angle.value)+0.03;
 			break;
 		
 		default:

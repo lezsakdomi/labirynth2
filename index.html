@@ -15,8 +15,9 @@
 		</div>
 		<br>
 		<div>
-			<input type=number id=relx onChange="reDraw(false)" placeholder=relx autofocus>
-			<input type=number id=rely onChange="reDraw(false)" placeholder=rely autofocus>
+			<input type=number id=relx onChange="reDraw(false)" placeholder=relx>
+			<input type=number id=rely onChange="reDraw(false)" placeholder=rely>
+			<input type="number" id=angle placeholder="angle" step="0.01">
 			<input id=relcolor size=5 disabled placeholder="Color on minimap">
 			<br>
 			<button onclick="setTimeout(function(){reDraw();}, 0);">ReDraw!</button>
