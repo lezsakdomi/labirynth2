@@ -13,6 +13,5 @@ Branches:
 
 |Branch		|Description																				|
 |-----------|-------------------------------------------------------------------------------------------|
-|Alpha		|Under developmen																			|
 |Beta		|Does'nt chrashes anymore, but it has debugging features enabled. So not ready for release	|
 |gh-pages	|The active release (accessible at <https://lezsakdomi.github.io/labirynth2>)				|
