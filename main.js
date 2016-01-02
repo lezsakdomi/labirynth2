@@ -186,7 +186,7 @@ function getRelColor(rel){
 }
 
 function getRel12Color(rel){
-	rel2={x: rel.x, y: rel.y};
+	var rel2={x: rel.x, y: rel.y};
 	rel2.x+=Number(relx.value);
 	rel2.y+=Number(rely.value);
 	
@@ -195,6 +195,12 @@ function getRel12Color(rel){
 	
   var imageData = mctx.getImageData(rel2.x + minimap.width / 2, minimap.height - rel2.y, 1, 1);
   return rgbToHex(imageData.data[0], imageData.data[1], imageData.data[2]);
+}
+
+function turn(rel, angle){
+	var rel2={x: rel.x, y: rel.y};
+	rel.x=Math.cos(Math.PI/2+angle)*rel2.y+Math.cos(angle)*rel2.x;
+	rel.y=Math.sin(Math.PI/2+angle)*rel2.y+Math.sin(angle)*rel2.x;
 }
 
 
