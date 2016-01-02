@@ -2,11 +2,28 @@
   <!--script src=https://rawgit.com/tiff/887032/raw/654ee2e6d3c93328a79afe9eb797167237238efd/compareColors.js></script> <!---->
   <script src=main.js></script>
   <link rel=stylesheet href=main.css>
-	<div>
-		<div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <div class="iface">
+  	<div class="main control">
+  		<button id=mrunb onClick="mrun=setInterval(function(){reDraw()}, 100); mrunb.disabled=true; mstopb.disabled=false;">Run</button>
+		<button id=mstopb onclick="clearInterval(mrun); mstopb.disabled=true; mrunb.disabled=false;" disabled>Stop</button>
+  	</div>
+  	<div class="ui">
+		<input type="checkbox" onchange="this.checked?($('.debug').show(), $('.help').hide()):($('.debug').hide(), $('.help').show());" id="iamdev" /><label for="iamdev">Debug functions (Just for developers!)</label>
+	</div>
+  	<br>
+  	<div class="help">
+  		Use<br>
+  		<code>W, A, S, D, and for turn Í and C</code> (it's wery usable with hungarian keyboard)<br>
+  		or<br>
+  		<code>Left, Right, Up, Down and for turn PgUp and PgDn</code>!
+  	</div>
+  	<br>
+	<div class="front">
+		<div class="ui canvas">
 			<canvas id=canvas></canvas>
 		</div>
-		<div>
+		<div class="debug size">
 			<input type=number placeholder=Width onChange="canvas.width=this.value; init(true);" class="sizeinput">
 			<br>
 			<input type=number placeholder=Height onChange="canvas.height=this.value; init(true);" class="sizeinput">
@@ -14,7 +31,7 @@
 			<button onClick="beginDraw(); endDraw();">Clear!</button>
 		</div>
 		<br>
-		<div>
+		<div class="debug control">
 			<input type=number id=relx onChange="reDraw(false)" placeholder=relx>
 			<input type=number id=rely onChange="reDraw(false)" placeholder=rely>
 			<input type="number" id=angle placeholder="angle" step="0.01">
@@ -28,25 +45,26 @@
 			<button id=stopb onclick="clearInterval(run); stopb.disabled=true; runb.disabled=false;" disabled>Stop</button>
 			<input type=number id=delay placeholder="Delay (ms)">
 		</div>
-		<div>
-			
-		</div>
 	</div>
 	<br>
-	<div>
-		<div>
+	<div class="minimap">
+		<div class="control">
 			<button onClick="mctx.fillRect(0, 0, minimap.width, minimap.height);">Clear!</button>
 			<input type=text placeholder=Color onChange="mctx.strokeStyle=this.value" size=4>
 			<input type=number placeholder=Width onChange="mctx.lineWidth=this.value">
 		</div>
 		<br>
-		<div style="background: gray;">
-			<canvas id=minimap width=90 height=90 onMouseDown="doPaint=true; mctx.beginPath(); mctx.moveTo(event.offsetX, event.offsetY);" onMouseUp="doPaint=false; mctx.stroke();" onMouseMove="if (doPaint) {mctx.lineTo(event.offsetX, event.offsetY); mctx.stroke();}"></canvas><canvas id=moverlay width=90 height=90  onMouseDown="doPaint=true; mctx.beginPath(); mctx.moveTo(event.offsetX, event.offsetY);" onMouseUp="doPaint=false; mctx.stroke();" onMouseMove="if (doPaint) {mctx.lineTo(event.offsetX, event.offsetY); mctx.stroke();}"></canvas>
+		<div style="background: gray;" class="canvas">
+			<canvas id=minimap width=90 height=90 onMouseDown="doPaint=true; mctx.beginPath(); mctx.moveTo(event.offsetX, event.offsetY);" onMouseUp="doPaint=false; mctx.stroke();" onMouseMove="if (doPaint) {mctx.lineTo(event.offsetX, event.offsetY); mctx.stroke();}"></canvas><canvas id=moverlay width=90 height=90  onMouseDown="doPaint=true; mctx.beginPath(); mctx.moveTo(event.offsetX, event.offsetY);" onMouseUp="doPaint=false; mctx.stroke();" onMouseMove="if (doPaint) {mctx.lineTo(event.offsetX, event.offsetY); mctx.stroke();}" class="debug"></canvas>
 		</div>
-		<div>
+		<div class="debug size">
 			<input type=number placeholder=Width onChange="minimap.width=this.value; init(true);" class="sizeinput">
 			<br>
 			<input type=number placeholder=Height onChange="minimap.height=this.value; init(true);" class="sizeinput">
 		</div>
+		<div class="help justify" style="width: 150px">
+			Draw a labirynth on the white shape at the left side!
+		</div>
 	</div>
+  </div>
 </body>
