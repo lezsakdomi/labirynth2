@@ -409,6 +409,16 @@ function keyPress(keyCode){
 			rely.value--;
 			break;
 		
+		case 226: //  Í
+		case 33: // PgUp
+			angle.value=Number(angle.value)-0.03;
+			break;
+		
+		case 67: //  C
+		case 34: //PgDn
+			angle.value=Number(angle.value)+0.03;
+			break;
+		
 		default:
 			console.log("Unhandled keyPress: #"+keyCode+" ('"+String.fromCharCode(keyCode)+"')");
 	}
