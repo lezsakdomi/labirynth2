@@ -185,20 +185,6 @@ function getRelColor(rel){
 	return getRel12Color(rel);
 }
 
-function getRel1Color(rel) {
-	if (logDrawing) console.log(rel);
-	rel2=rel;
-	rel2.x+=Number(relx.value);
-	rel2.y+=Number(rely.value);
-	return getRel2Color(rel2);
-	//if (logDrawing) console.log(rel);
-}
-
-function getRel2Color(rel){
-  var imageData = mctx.getImageData(rel.x + minimap.width / 2, minimap.height - rel.y, 1, 1);
-  return rgbToHex(imageData.data[0], imageData.data[1], imageData.data[2]);
-}
-
 function getRel12Color(rel){
 	rel2={x: rel.x, y: rel.y};
 	rel2.x+=Number(relx.value);
