@@ -187,6 +187,7 @@ function getRelColor(rel){
 
 function getRel12Color(rel){
 	var rel2={x: rel.x, y: rel.y};
+	turn(rel2, -Number(angle.value));
 	rel2.x+=Number(relx.value);
 	rel2.y+=Number(rely.value);
 	
