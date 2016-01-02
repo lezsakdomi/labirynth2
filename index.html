@@ -8,6 +8,9 @@
   		<button id=mrunb onClick="mrun=setInterval(function(){reDraw()}, 100); mrunb.disabled=true; mstopb.disabled=false;">Run</button>
 		<button id=mstopb onclick="clearInterval(mrun); mstopb.disabled=true; mrunb.disabled=false;" disabled>Stop</button>
   	</div>
+  	<div class="ui">
+		<input type="checkbox" onchange="this.checked?($('.debug').show(), $('.help').hide()):($('.debug').hide(), $('.help').show());" id="iamdev" /><label for="iamdev">Debug functions (Just for developers!)</label>
+	</div>
   	<br>
   	<div class="help">
   		Use<br>
@@ -17,10 +20,6 @@
   	</div>
   	<br>
 	<div class="front">
-		<div class="ui">
-			<input type="checkbox" onchange="this.checked?$('.debug').show():$('.debug').hide()" id="iamdev" /><label for="iamdev">Debug functions (Just for developers!)</label>
-		</div>
-		<br>
 		<div class="ui canvas">
 			<canvas id=canvas></canvas>
 		</div>
@@ -62,6 +61,9 @@
 			<input type=number placeholder=Width onChange="minimap.width=this.value; init(true);" class="sizeinput">
 			<br>
 			<input type=number placeholder=Height onChange="minimap.height=this.value; init(true);" class="sizeinput">
+		</div>
+		<div class="help justify" style="width: 150px">
+			Draw a labirynth on the white shape at the left side!
 		</div>
 	</div>
   </div>

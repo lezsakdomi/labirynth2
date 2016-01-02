@@ -33,3 +33,7 @@ code{
 	box-shadow: 0.5px 0.5px 3px black;
 	margin: 2px;
 }
+
+.justify{
+	text-align: justify;
+}
