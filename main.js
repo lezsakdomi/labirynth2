@@ -374,8 +374,11 @@ function init(fast) {
 	moctx.globalCompositeOperation="xor";
 	
 	console.log("Ready to go!");
-
-  if (!fast) {
+	
+	iamdev.checked=false;
+	iamdev.onchange();
+	
+	if (!fast) {
 		console.log("Slow init triggered. Initially reDraw...");
 		reDraw();
 	} else console.log("Fast init triggered. Skip reDraw...");

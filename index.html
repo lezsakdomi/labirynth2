@@ -2,8 +2,13 @@
   <!--script src=https://rawgit.com/tiff/887032/raw/654ee2e6d3c93328a79afe9eb797167237238efd/compareColors.js></script> <!---->
   <script src=main.js></script>
   <link rel=stylesheet href=main.css>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <div class="iface">
 	<div class="front">
+		<div class="ui">
+			<input type="checkbox" onchange="this.checked?$('.debug').show():$('.debug').hide()" id="iamdev" /><label for="iamdev">Debug funkciók (Csak fejleszőknek!)</label>
+		</div>
+		<br>
 		<div class="ui canvas">
 			<canvas id=canvas></canvas>
 		</div>
@@ -39,7 +44,7 @@
 		</div>
 		<br>
 		<div style="background: gray;" class="canvas">
-			<canvas id=minimap width=90 height=90 onMouseDown="doPaint=true; mctx.beginPath(); mctx.moveTo(event.offsetX, event.offsetY);" onMouseUp="doPaint=false; mctx.stroke();" onMouseMove="if (doPaint) {mctx.lineTo(event.offsetX, event.offsetY); mctx.stroke();}"></canvas><canvas id=moverlay width=90 height=90  onMouseDown="doPaint=true; mctx.beginPath(); mctx.moveTo(event.offsetX, event.offsetY);" onMouseUp="doPaint=false; mctx.stroke();" onMouseMove="if (doPaint) {mctx.lineTo(event.offsetX, event.offsetY); mctx.stroke();}"></canvas>
+			<canvas id=minimap width=90 height=90 onMouseDown="doPaint=true; mctx.beginPath(); mctx.moveTo(event.offsetX, event.offsetY);" onMouseUp="doPaint=false; mctx.stroke();" onMouseMove="if (doPaint) {mctx.lineTo(event.offsetX, event.offsetY); mctx.stroke();}"></canvas><canvas id=moverlay width=90 height=90  onMouseDown="doPaint=true; mctx.beginPath(); mctx.moveTo(event.offsetX, event.offsetY);" onMouseUp="doPaint=false; mctx.stroke();" onMouseMove="if (doPaint) {mctx.lineTo(event.offsetX, event.offsetY); mctx.stroke();}" class="debug"></canvas>
 		</div>
 		<div class="debug size">
 			<input type=number placeholder=Width onChange="minimap.width=this.value; init(true);" class="sizeinput">
