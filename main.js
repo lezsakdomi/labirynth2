@@ -296,7 +296,12 @@ function tryDraw(rel) {
 	} else return null; //Not applicable - continue
 }
 
-function rect(pos, size, color) { //pos: {x, y}, size: {width, height}, color: text=undefined
+function rect(pos, size, color){
+	if (animate) window.requestAnimationFrame(function(ms){realRect(pos, size, color, ms)});
+	else realRect(pos, size, color, null);
+}
+
+function realRect(pos, size, color, ms) { //pos: {x, y}, size: {width, height}, color: text=undefined
   if (color) {
     previusColor = ctx.fillStyle;
     ctx.fillStyle = color;
