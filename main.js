@@ -395,9 +395,13 @@ function move(rel){
 	var rel2={x: rel.x, y: rel.y};
 	console.log(rel2);
 	turn(rel2, -Number(angle.value));
-	console.log(rel2);
-	relx.value=Number(relx.value)+rel2.x;
-	rely.value=Number(rely.value)+rel2.y;
+	if(logDrawing){
+		//console.log(rel2);
+	}
+	if (compareColors(getRelColor(rel2), "white")) {
+		relx.value=Number(relx.value)+rel2.x;
+		rely.value=Number(rely.value)+rel2.y;
+	}
 }
 
 function keyPress(keyCode){
