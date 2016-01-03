@@ -44,6 +44,8 @@
 			<button id=runb onClick="run=setInterval(function(){reDraw()}, delay.value); runb.disabled=true; stopb.disabled=false;">Run</button>
 			<button id=stopb onclick="clearInterval(run); stopb.disabled=true; runb.disabled=false;" disabled>Stop</button>
 			<input type=number id=delay placeholder="Delay (ms)">
+			<br>
+			<button onclick="console.log(setInterval(function(){moctx.stroke();}));">Stroke on moctx at every 1000 ms</button>
 		</div>
 	</div>
 	<br>

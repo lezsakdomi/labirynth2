@@ -191,7 +191,10 @@ function getRel12Color(rel){
 	turn(rel2, -Number(angle.value));
 	rel2.x+=Number(relx.value);
 	rel2.y+=Number(rely.value);
-	
+	return getGlobColor(rel2);
+}
+
+function getGlobColor(rel2){
 	moctx.moveTo(rel2.x + minimap.width / 2, minimap.height - rel2.y);
 	moctx.lineTo(rel2.x + minimap.width / 2, minimap.height - rel2.y+1);
 	
@@ -365,9 +368,10 @@ function init(fast) {
   mctx.fillStyle = "white";
   mctx.lineWidth = 2;
 	
-	moverlay.width=minimap.width;
-	moverlay.height=minimap.height;
-	moverlay.style.left=-moverlay.width+"px";
+	moverlay.width=minimap.width+10;
+	moverlay.height=minimap.height+10;
+	moverlay.style.left=-(moverlay.width-10)+"px";
+	moverlay.style.top=10;
 	
 	moctx = moverlay.getContext("2d");
 	moctx.lineWidth=1;
@@ -393,14 +397,28 @@ function init(fast) {
 
 function move(rel){
 	var rel2={x: rel.x, y: rel.y};
-	console.log(rel2);
+	//console.log(rel2);
 	turn(rel2, -Number(angle.value));
 	if(logDrawing){
 		//console.log(rel2);
 	}
-	if (compareColors(getRelColor(rel2), "white")) {
-		relx.value=Number(relx.value)+rel2.x;
-		rely.value=Number(rely.value)+rel2.y;
+	rel2.x+=Number(relx.value);
+	rel2.y+=Number(rely.value);
+	//console.log(rel2);
+	if (compareColors(getGlobColor(rel2), "white")) {
+		relx.value=rel2.x;
+		rely.value=rel2.y;
+	} else {
+		console.log("Way is blocked!!", rel2);
+		
+		var previusColor=moctx.strokeStyle;
+		moctx.stroke();
+		moctx.strokeStyle="red";
+		moctx.beginPath();
+		moctx.moveTo(rel2.x + minimap.width / 2, minimap.height - rel2.y);
+		moctx.lineTo(rel2.x + minimap.width / 2, minimap.height - rel2.y+1);
+		moctx.stroke();
+		moctx.strokeStyle=previusColor;
 	}
 }
 
