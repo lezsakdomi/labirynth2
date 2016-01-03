@@ -391,26 +391,35 @@ function init(fast) {
 
 
 
+function move(rel){
+	var rel2={x: rel.x, y: rel.y};
+	console.log(rel2);
+	turn(rel2, -Number(angle.value));
+	console.log(rel2);
+	relx.value=Number(relx.value)+rel2.x;
+	rely.value=Number(rely.value)+rel2.y;
+}
+
 function keyPress(keyCode){
 	switch(keyCode){
 		case 37: // <--
 		case 65: //  A
-			relx.value--;
+			move({x: -1, y: 0});
 			break;
 		
 		case 39: // -->
 		case 68: //  D
-			relx.value++;
+			move({x: +1, y: 0});
 			break;
 		
 		case 38: // /|\
 		case 87: //  W
-			rely.value++;
+			move({x: 0, y: +1});
 			break;
 		
 		case 40: // \|/
 		case 83: //  S
-			rely.value--;
+			move({x: 0, y: -1});
 			break;
 		
 		case 226: //  Í
