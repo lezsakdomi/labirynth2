@@ -1,12 +1,12 @@
-<body onLoad="init(false);" onKeyDown="keyPressTriggers[event.keyCode]=setInterval(keyPress(event.keyCode), 100);" onKeyUp="clearInterval(keyPressTriggers[event.keyCode])">
+<body onLoad="init(true);" onKeyDown="keyPressTriggers[event.keyCode]=setInterval(keyPress(event.keyCode), 100);" onKeyUp="clearInterval(keyPressTriggers[event.keyCode])">
   <!--script src=https://rawgit.com/tiff/887032/raw/654ee2e6d3c93328a79afe9eb797167237238efd/compareColors.js></script> <!---->
   <script src=main.js></script>
   <link rel=stylesheet href=main.css>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <div class="iface">
   	<div class="main control">
-  		<button id=mrunb onClick="mrun=setInterval(function(){reDraw()}, 100); mrunb.disabled=true; mstopb.disabled=false;">Run</button>
-		<button id=mstopb onclick="clearInterval(mrun); mstopb.disabled=true; mrunb.disabled=false;" disabled>Stop</button>
+  		<button id=mrunb onClick="mrun=window.requestAnimationFrame(runDraw); mrunb.disabled=true; mstopb.disabled=false;">Run</button>
+		<button id=mstopb onclick="window.cancelAnimationFrame(mrun); mstopb.disabled=true; mrunb.disabled=false;" disabled>Stop</button>
   	</div>
   	<div class="ui">
 		<input type="checkbox" onchange="this.checked?($('.debug').show(), $('.help').hide()):($('.debug').hide(), $('.help').show());" id="iamdev" /><label for="iamdev">Debug functions (Just for developers!)</label>

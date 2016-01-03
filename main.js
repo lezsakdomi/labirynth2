@@ -220,11 +220,15 @@ function endDraw() {
 	moctx.stroke();
 }
 
-function reDraw(auto){
-	window.requestAnimationFrame(function(ms){realReDraw(auto, ms)});
+function runDraw(auto, ms){
+	if(logDrawing){
+		console.log(ms);
+	}
+	reDraw(auto, ms);
+	return mrun=window.requestAnimationFrame(function(ms){reDraw(auto, ms)});
 }
 
-function realReDraw(auto, ms) {
+function reDraw(auto, ms) {
   var start = performance.now();
 
   rel = {
