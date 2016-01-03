@@ -17,6 +17,7 @@ waiti=0;
 shapeDelay=0; //DON'T TURN IT ON!!! //Its commented out, so do'nt worry, but...
 keyPressTriggers=[];
 logDrawing=false;
+var animate=false;
 
 function pausecomp(ms) {
 	//windows
@@ -219,7 +220,11 @@ function endDraw() {
 	moctx.stroke();
 }
 
-function reDraw(auto) {
+function reDraw(auto){
+	window.requestAnimationFrame(function(ms){realReDraw(auto, ms)});
+}
+
+function realReDraw(auto, ms) {
   var start = performance.now();
 
   rel = {
