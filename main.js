@@ -281,12 +281,7 @@ function realReDraw(auto, ms) {
   fps.value = Number(1 / took).toFixed(2) + " fps";
 }
 
-function tryDraw(rel){
-	if (animate) window.requestAnimationFrame(function(ms){realReDraw(rel, ms)});
-	else realTryDraw(rel, null);
-}
-
-function realTryDraw(rel, ms) {
+function tryDraw(rel) {
 	//console.log(rel);
 	
 	relcolor.value=getRelColor(rel);
