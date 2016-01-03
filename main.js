@@ -428,6 +428,19 @@ function keyPress(keyCode){
 	}
 }
 
+function mouseMove(event){
+	angle.value=Number(angle.value)+event.movementX/100;
+	//console.log(event.movementX, relx.value);
+}
+
+document.addEventListener('pointerlockchange', function(event){
+	if (document.pointerLockElement===canvas){
+		document.addEventListener('mousemove', mouseMove);
+	} else {
+		document.removeEventListener('mousemove', mouseMove);
+	}
+});
+
 //setInterval(function(){console.log("s")}, 1000) //For debugging
 
 console.log("Game sucessfully prepared!");
