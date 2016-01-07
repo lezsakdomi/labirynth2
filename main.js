@@ -17,6 +17,15 @@ waiti=0;
 shapeDelay=0; //DON'T TURN IT ON!!! //Its commented out, so do'nt worry, but...
 keyPressTriggers=[];
 logDrawing=false;
+buffer=[];
+
+
+
+function indev(){
+	return iamdev.checked;
+}
+
+
 
 function pausecomp(ms) {
 	//windows
@@ -189,17 +198,40 @@ function getRelColor(rel){
 function getRel12Color(rel){
 	var rel2={x: rel.x, y: rel.y};
 	turn(rel2, -Number(angle.value));
+	
 	rel2.x+=Number(relx.value);
 	rel2.y+=Number(rely.value);
+	
+	rel2.x=Math.round(rel2.x + minimap.width / 2);
+	rel2.y=Math.round(minimap.height - rel2.y);
+	
 	return getGlobColor(rel2);
 }
 
 function getGlobColor(rel2){
-	moctx.moveTo(rel2.x + minimap.width / 2, minimap.height - rel2.y);
-	moctx.lineTo(rel2.x + minimap.width / 2, minimap.height - rel2.y+1);
+	moPx(rel2, "rgba(0, 128, 0, 128)");
 	
-  var imageData = mctx.getImageData(rel2.x + minimap.width / 2, minimap.height - rel2.y, 1, 1);
-  return rgbToHex(imageData.data[0], imageData.data[1], imageData.data[2]);
+	if((rel2.x<0)||(rel2.x>=buffer.width)||(rel2.y<0)||(rel2.y>=buffer.height)){
+		console.error("Out of minimap", rel2);
+		return "black";
+	}
+	
+	var pos=(rel2.y*buffer.width+rel2.x)*4;
+	//var imageData = [];
+	//console.log(buffer.data[pos+0], buffer, pos, rel2);
+	var color=rgbToHex(buffer.data[pos+0], buffer.data[pos+1], buffer.data[pos+2]);
+	moPx(rel2, color);
+	return color;
+}
+
+function moPx(pos, color){
+	if (!indev()) return;
+
+	moctx.beginPath();
+	moctx.strokeStyle=color;
+	moctx.moveTo(pos.x, pos.y);
+	moctx.lineTo(pos.x, pos.y+1);
+	moctx.stroke();
 }
 
 function turn(rel, angle){
@@ -215,11 +247,13 @@ function beginDraw() {
   //rect(origo, canvas, "white");
 	
 	moctx.clearRect(0, 0, moverlay.width, moverlay.height);
-	moctx.beginPath();
+	//moctx.beginPath();
+	
+	buffer=mctx.getImageData(0, 0, minimap.width, minimap.height);
 }
 
 function endDraw() {
-	moctx.stroke();
+	//moctx.stroke();
 }
 
 function reDraw(auto) {
@@ -410,15 +444,7 @@ function move(rel){
 		rely.value=rel2.y;
 	} else {
 		console.log("Way is blocked!!", rel2);
-		
-		var previusColor=moctx.strokeStyle;
-		moctx.stroke();
-		moctx.strokeStyle="red";
-		moctx.beginPath();
-		moctx.moveTo(rel2.x + minimap.width / 2, minimap.height - rel2.y);
-		moctx.lineTo(rel2.x + minimap.width / 2, minimap.height - rel2.y+1);
-		moctx.stroke();
-		moctx.strokeStyle=previusColor;
+		moPx({x: rel2.x + minimap.width / 2, y: minimap.height - rel2.y}, "red")
 	}
 }
 
