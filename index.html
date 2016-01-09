@@ -37,11 +37,11 @@
 			<input type="number" id=angle placeholder="angle" step="0.01">
 			<input id=relcolor size=5 disabled placeholder="Color on minimap">
 			<br>
-			<button onclick="setTimeout(function(){reDraw();}, 0);">ReDraw!</button>
+			<button onclick="setTimeout(function(){reDraw(true);}, 0);">ReDraw!</button>
 			<input placeholder=Time disabled id=time size=4>
 			<input placeholder=FPS disabled id=fps size=4>
 			<br>
-			<button id=runb onClick="run=setInterval(function(){reDraw()}, delay.value); runb.disabled=true; stopb.disabled=false;">Run</button>
+			<button id=runb onClick="run=setInterval(function(){reDraw(true)}, delay.value); runb.disabled=true; stopb.disabled=false;">Run</button>
 			<button id=stopb onclick="clearInterval(run); stopb.disabled=true; runb.disabled=false;" disabled>Stop</button>
 			<input type=number id=delay placeholder="Delay (ms)">
 			<br>

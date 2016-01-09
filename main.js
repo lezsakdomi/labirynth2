@@ -330,7 +330,7 @@ function reDraw(auto) {
   var took = (end - start) / 1000;
   time.value = Number(took).toFixed(3) + " s";
   fps.value = Number(1 / took).toFixed(2) + " fps";
-  if (!indev(console.log(fps.value)));
+  if (auto===true) console.log(fps.value);
 }
 
 function tryDraw(rel) {
