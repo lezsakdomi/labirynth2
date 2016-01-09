@@ -59,10 +59,18 @@
 		<div style="background: gray;" class="canvas">
 			<canvas id=minimap width=90 height=90 onMouseDown="doPaint=true; mctx.beginPath(); mctx.moveTo(event.offsetX, event.offsetY);" onMouseUp="doPaint=false; mctx.stroke();" onMouseMove="if (doPaint) {mctx.lineTo(event.offsetX, event.offsetY); mctx.stroke();}"></canvas><canvas id=moverlay width=90 height=90  onMouseDown="doPaint=true; mctx.beginPath(); mctx.moveTo(event.offsetX, event.offsetY);" onMouseUp="doPaint=false; mctx.stroke();" onMouseMove="if (doPaint) {mctx.lineTo(event.offsetX, event.offsetY); mctx.stroke();}" class="debug"></canvas>
 		</div>
-		<div class="debug size">
-			<input type=number placeholder=Width onChange="minimap.width=this.value; init(true);" class="sizeinput">
+		<div style="box-shadow: 0px 0px 0px; padding: 0px; margin: 0px;">
+			<div class="debug size">
+				<input type=number placeholder=Width onChange="minimap.width=this.value; init(true);" class="sizeinput">
+				<br>
+				<input type=number placeholder=Height onChange="minimap.height=this.value; init(true);" class="sizeinput">
+			</div>
 			<br>
-			<input type=number placeholder=Height onChange="minimap.height=this.value; init(true);" class="sizeinput">
+			<div class="debug size">
+				<input type="number" placeholder="View.x" class="sizeinput" value="25" id="vsx"/>
+				<br>
+				<input type="number" placeholder="View.y" class="sizeinput" value="50" id="vsy"/>
+			</div>
 		</div>
 		<div class="help justify" style="width: 150px">
 			Draw a labirynth on the white shape at the left side!

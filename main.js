@@ -180,8 +180,8 @@ function getMapSize() {
 
 function getViewSize() {
   return {
-    x: (minimap.width-1)/2,
-    y: minimap.height
+    x: Number(vsx.value),
+    y: Number(vsy.value)
   };
 }
 
