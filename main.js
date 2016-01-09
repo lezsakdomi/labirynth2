@@ -27,6 +27,14 @@ function indev(){
 
 
 
+function deReference(rel){
+	return {
+		x: rel.x,
+		y: rel.y,
+		silent: rel.silent
+	};
+}
+
 function pausecomp(ms) {
 	//windows
 	ms += new Date().getTime();
@@ -196,12 +204,22 @@ function getRelColor(rel){
 }
 
 function getRel12Color(rel){
-	var rel2={x: rel.x, y: rel.y};
+	var rel2=deReference(rel);
+	return getRel1Color(rel2);
+}
+
+function getRel1Color(rel){
+	var rel2=deReference(rel);
 	turn(rel2, -Number(angle.value));
 	
 	rel2.x+=Number(relx.value);
 	rel2.y+=Number(rely.value);
 	
+	return getRel2Color(rel2);
+}
+
+function getRel2Color(rel){
+	var rel2=deReference(rel);
 	rel2.x=Math.round(rel2.x + minimap.width / 2);
 	rel2.y=Math.round(minimap.height - rel2.y);
 	
@@ -212,7 +230,7 @@ function getGlobColor(rel2){
 	moPx(rel2, "rgba(0, 128, 0, 128)");
 	
 	if((rel2.x<0)||(rel2.x>=buffer.width)||(rel2.y<0)||(rel2.y>=buffer.height)){
-		console.error("Out of minimap", rel2);
+		if (!rel2.silent) console.error("Out of minimap", rel2);
 		return "black";
 	}
 	
@@ -259,7 +277,7 @@ function endDraw() {
 function reDraw(auto) {
   var start = performance.now();
 
-  rel = {
+  var rel = {
     x: relx.value,
     y: rely.value,
   };
@@ -279,6 +297,7 @@ function reDraw(auto) {
 				var step;
 
 				to.y=viewSize.y;
+				rel.silent=true;
 
 				for(to.x=-viewSize.x; to.x<=viewSize.x; to.x++){
 					step=to.x/to.y;
@@ -440,7 +459,7 @@ function move(rel){
 	rel2.x+=Number(relx.value);
 	rel2.y+=Number(rely.value);
 	//console.log(rel2);
-	if (compareColors(getGlobColor(rel2), "white")) {
+	if (compareColors(getRel2Color(rel2), "white")) {
 		relx.value=rel2.x;
 		rely.value=rel2.y;
 	} else {
