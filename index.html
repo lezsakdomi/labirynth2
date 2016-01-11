@@ -16,12 +16,13 @@
   		Use<br>
   		<code>W, A, S, D, and for turn Í and C</code> (it's wery usable with hungarian keyboard)<br>
   		or<br>
-  		<code>Left, Right, Up, Down and for turn PgUp and PgDn</code>!
+  		<code>Left, Right, Up, Down and for turn PgUp and PgDn</code>!<br>
+  		Or click on the screen to use mouse...
   	</div>
   	<br>
 	<div class="front">
 		<div class="ui canvas">
-			<canvas id=canvas onclick="canvas.requestPointerLock();"></canvas>
+			<canvas id=canvas onclick="(canvas.requestPointerLock||canvas.mozRequestPointerLock)();"></canvas>
 		</div>
 		<div class="debug size">
 			<input type=number placeholder=Width onChange="canvas.width=this.value; init(true);" class="sizeinput">
