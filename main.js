@@ -410,6 +410,15 @@ function drawPixel(rel, wall) { //rel: {x, y}, wall: Boolean
 
 function init(fast) {
 	console.log("GUI loaded/refreshed. Initialising...");
+	
+canvas.requestPointerLock = canvas.requestPointerLock ||
+           canvas.mozRequestPointerLock ||
+           canvas.webkitRequestPointerLock;
+
+document.exitPointerLock = document.exitPointerLock ||
+         document.mozExitPointerLock ||
+         document.webkitExitPointerLock;
+  
   ctx = canvas.getContext("2d");
   ctx.shadowColor = "gray";
   ctx.shadowBlur = 0;
