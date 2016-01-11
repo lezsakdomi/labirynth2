@@ -22,7 +22,7 @@
   	<br>
 	<div class="front">
 		<div class="ui canvas">
-			<canvas id=canvas onclick="(canvas.requestPointerLock||canvas.mozRequestPointerLock)();"></canvas>
+			<canvas id=canvas onclick="(canvas.requestPointerLock||this.mozRequestPointerLock)();"></canvas>
 		</div>
 		<div class="debug size">
 			<input type=number placeholder=Width onChange="canvas.width=this.value; init(true);" class="sizeinput">
