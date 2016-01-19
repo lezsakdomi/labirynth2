@@ -500,6 +500,7 @@ function keyPress(keyCode){
 			break;
 		
 		case 226: //  Í
+		case 89: //  Y
 		case 33: // PgUp
 			angle.value=Number(angle.value)-0.03;
 			break;
