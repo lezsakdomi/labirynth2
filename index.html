@@ -9,7 +9,7 @@
 		<button id=mstopb onclick="clearInterval(mrun); mstopb.disabled=true; mrunb.disabled=false;" disabled>Stop</button>
   	</div>
   	<div class="ui">
-		<input type="checkbox" onchange="this.checked?($('.debug').show(), $('.help').hide()):($('.debug').hide(), $('.help').show());" id="iamdev" oncontextmenu="drawMethod='brute';" /><label for="iamdev" oncontextmenu="drawMethod='tesco';">Debug functions (Just for developers!)</label>
+		<input type="checkbox" onchange="this.checked?($('.debug').show(), $('.help').hide()):($('.debug').hide(), $('.help').show());" id="iamdev" oncontextmenu="drawMethod='brute'; event.preventDefault();" /><label for="iamdev" oncontextmenu="drawMethod='tesco'; event.preventDefault();">Debug functions (Just for developers!)</label>
 	</div>
   	<br>
   	<div class="help">
