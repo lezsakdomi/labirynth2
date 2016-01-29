@@ -523,8 +523,19 @@ function mouseMove(event){
 document.addEventListener('pointerlockchange', function(event){
 	if (document.pointerLockElement===canvas){
 		document.addEventListener('mousemove', mouseMove);
+		
+		$("div:not(:has(#canvas)), br").hide();
+		$("div:has(#canvas), #canvas")
+			.width('calc(100% - 20px)')
+			.height('calc(100% - 20px)');
 	} else {
 		document.removeEventListener('mousemove', mouseMove);
+		
+		$("div:not(:has(#canvas)), br").css("display", "inherit");
+		iamdev.onchange();
+		$("div:has(#canvas), #canvas")
+			.width('initial')
+			.height('initial');
 	}
 });
 
